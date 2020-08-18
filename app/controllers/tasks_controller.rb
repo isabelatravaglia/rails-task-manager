@@ -14,13 +14,30 @@ class TasksController < ApplicationController
     def create
         @task = Task.new(task_params)
         if @task.save
-          flash[:success] = "Object successfully created"
+          flash[:success] = "task successfully created"
           redirect_to @task
         else
           flash[:error] = "Something went wrong"
           render 'new'
         end
     end
+
+    def edit
+        @task = Task.find(params[:id])
+    end
+
+    def update
+        @task = Task.find(params[:id])
+        if @task.update(task_params)
+          flash[:success] = "task was successfully updated"
+          redirect_to @task
+        else
+          flash[:error] = "Something went wrong"
+          render 'edit'
+        end
+    end
+    
+    
     
     private
 

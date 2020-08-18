@@ -1,5 +1,5 @@
 <h1>My Tasks</h1>
-<ul class="unstyled">
+<ul style="list-style: none;">
   <% @tasks.each do |task| %>
     <li><% if task.completed == true %></li>
       <li><%= link_to "[X]"  + " " + task.title, task_path(task) %></li>
@@ -9,3 +9,4 @@
   <% end %>
 </ul>
 
+<%= link_to "Create a new task", new_task_path %>

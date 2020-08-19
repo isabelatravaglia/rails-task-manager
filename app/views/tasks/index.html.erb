@@ -1,11 +1,18 @@
 <h1>My Tasks</h1>
-<ul style="list-style: none;">
+<ul id="tasks">
   <% @tasks.each do |task| %>
-    <li><% if task.completed == true %></li>
-      <li><%= link_to "[X]"  + " " + task.title, task_path(task) %></li>
-    <li><% else %></li>
-      <li><%= link_to "[  ]"  + " " + task.title, task_path(task) %></li>
-    <li><% end %></li>
+    <li>
+      <% if task.completed %>
+        <i class="fa fa-check-square-o"></i>
+      <% else %>
+        <i class="fa fa-square-o"></i>
+      <% end %>
+      <%= link_to task.title, task_path(task.id) %>
+      ·
+      <%= link_to task_path(task.id), method: :delete, data: { confirm: "Delete #{task.title}?" } do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 

@@ -36,6 +36,18 @@ class TasksController < ApplicationController
           render 'edit'
         end
     end
+
+    def destroy
+        @task = Task.find(params[:id])
+        if @task.destroy
+            flash[:success] = 'Object was successfully deleted.'
+            redirect_to tasks_path
+        else
+            flash[:error] = 'Something went wrong'
+            redirect_to tasks_path
+        end
+    end
+    
     
     
     
